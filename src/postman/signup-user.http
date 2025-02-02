@@ -4,8 +4,8 @@ Content-Type: application/json
 {
     "name": "John Doe",
     "avatar": "https://example.com/avatar.jpg",
-    "email": "john11.doe@example.com",
+    "email": "john2.doe@example.com",
     "phoneNumber": "1234567890",
-    "username": "johndoe11",
+    "username": "johndoe2",
     "password": "password123"
 }
