@@ -1,0 +1,11 @@
+POST http://localhost:8081/test
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "avatar": "https://example.com/avatar.jpg",
+    "email": "john.doe@example.com",
+    "phoneNumber": "1234567890",
+    "username": "johndoe",
+    "password": "password123"
+}

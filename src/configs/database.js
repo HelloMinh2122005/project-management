@@ -1,36 +1,29 @@
-'use strict'
+'use strict';
 
-require('dotenv').config()
-
-const mysql2 = require('mysql2/promise')
-
+require('dotenv').config();
+const mongoose = require('mongoose');
 
 class Database {
     constructor() {
-        this.connect()
+        this.connect();
     }
 
-    connect = () => mysql2.createPool({
-        host: process.env.HOST_NAME,
-        user: process.env.USER,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE,
-        port: process.env.DB_PORT,
-        waitForConnections: true,
-        connectionLimit: 10,
-        maxIdle: 10,
-        idleTimeout: 60000,
-        queueLimit: 0,
-        enableKeepAlive: true,
-        keepAliveInitialDelay: 0,
-    })
+    connect = async () => {
+        try {
+            await mongoose.connect(process.env.URL_DB);
+            console.log('MongoDB Connected Successfully');
+        } catch (error) {
+            console.error('PLEASE LORD DONT DO THIS TO ME:', error);
+            process.exit(1);
+        }
+    }
 
     static getInstance() {
         if (!this.instance) {
-            this.instance = new Database()
+            this.instance = new Database();
         }
-        return this.instance
+        return this.instance;
     }
 }
 
-module.exports = Database.getInstance()
+module.exports = Database.getInstance();
