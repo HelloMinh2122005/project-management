@@ -16,11 +16,6 @@ const users_projects = new mongoose.Schema({
     },
     feedback: {
         type: String
-    },
-    role: {
-        type: String,
-        enum: ['Manager', 'Member'],
-        default: 'Member'
     }
 }, {
     collection: 'USERS_PROJECTS',

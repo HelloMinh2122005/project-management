@@ -1,4 +1,4 @@
-POST http://localhost:8081/test
+POST http://localhost:8081/test_add_user
 Content-Type: application/json
 
 {

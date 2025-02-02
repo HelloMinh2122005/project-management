@@ -14,6 +14,11 @@ const userTasksSchema = new mongoose.Schema({
         ref: 'Task',
         required: true
     },
+    status: {
+        type: String,
+        enum: ['InProcess', 'Done'],
+        default: 'InProcess'
+    },
     feedback: {
         type: String
     }

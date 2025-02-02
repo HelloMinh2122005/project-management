@@ -7,7 +7,7 @@ const signUp = async (req, res) => {
             return res.status(400).json({ message: 'Email already exists' })
         }
         const newUser = await user.create(req.body)
-        return res.status(201).json(newUser)
+        return res.status(201).json('new user created', newUser)
     } catch (error) {
         throw new Error(error)
     }

@@ -1,0 +1,8 @@
+POST http://localhost:8081/test_add_project
+Content-Type: application/json
+
+{
+    "manager": "64ce9cabcd673aed67f12345", 
+    "title": "Project 1",
+    "description": "This is a test project 1"
+}
