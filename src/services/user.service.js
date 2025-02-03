@@ -2,6 +2,7 @@ const user = require('../models/users.models')
 
 const signUp = async (req, res) => {
     try {
+        console.log('>>>req.body:      ', req.body)
         const holderUser = await user.findOne({
             $or: [
                 { email: req.body.email },
