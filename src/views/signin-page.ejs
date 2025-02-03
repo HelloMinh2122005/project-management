@@ -19,9 +19,9 @@
         <button type="submit">Sign In</button>
     </form>
 
-    <% if (typeof errorMessage !=='undefined' && errorMessage) { %>
+    <% if (errorMessage && errorMessage.length> 0) { %>
         <script>
-            alert("<%= errorMessage %>");
+            alert("<%= errorMessage[0] %>");
         </script>
         <% } %>
 </body>

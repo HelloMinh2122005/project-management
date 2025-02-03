@@ -5,11 +5,11 @@ const getHomePage = async (req, res) => {
 }
 
 const getSignUpPage = async (req, res) => {
-    return res.render('signup-page.ejs');
+    return res.render('signup-page.ejs', { errorMessage: req.flash('error') });
 }
 
 const getSignInPage = async (req, res) => {
-    return res.render('signin-page.ejs');
+    return res.render('signin-page.ejs', { errorMessage: req.flash('error') });
 }
 
 const getWelcomePage = async (req, res) => {
@@ -20,13 +20,16 @@ const addNewUser = async (req, res) => {
     try {
         const result = await signUp(req);
         if (result.status === 201) {
-            return res.render('signin-page.ejs', { user: req.body });
+            req.flash('success', result.message || 'Welcome to my stupid website');
+            return res.redirect('/signin');
         } else {
-            return res.render('signup-page.ejs', { errorMessage: result.message });
+            req.flash('error', result.message || 'User name or Email already exists');
+            return res.redirect('/signup');
         }
     } catch (error) {
         console.error(error);
-        return res.render('signup-page.ejs', { errorMessage: 'An unexpected error occurred.' });
+        req.flash('error', 'Damn bro, you cooked somewhere');
+        return res.redirect('/signup');
     }
 };
 
@@ -35,9 +38,11 @@ const signInUser = async (req, res) => {
         const result = await signIn(req);
         if (result.status === 200) {
             req.session.user = req.body;
-            return res.render('welcome-page.ejs', { errorMessage: result.message });
+            req.flash('success', result.message);
+            return res.redirect('/welcome');
         } else {
-            return res.render('signin-page.ejs', { errorMessage: result.message });
+            req.flash('error', result.message);
+            return res.redirect('/signin');
         }
 
     } catch (error) {

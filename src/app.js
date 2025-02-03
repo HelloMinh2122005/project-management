@@ -5,6 +5,7 @@ const session = require('express-session');
 const router = require('./routes/web')
 const morgan = require('morgan')
 const configViewEngine = require('./configs/view-engine')
+const flash = require('express-flash');
 
 // Middleware
 app.use(morgan('dev'))
@@ -21,6 +22,7 @@ app.use(session({
         maxAge: Number(process.env.SESSION_LIFETIME)
     }
 }));
+app.use(flash());
 
 // View engine setup
 configViewEngine(app)
