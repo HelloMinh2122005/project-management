@@ -1,7 +1,7 @@
 const { signUp, signIn } = require('../services/user.service');
 
-const getHomePage = async (req, res) => {
-    return res.render('home-page.ejs');
+const getLandingPage = async (req, res) => {
+    return res.render('landing-page.ejs');
 }
 
 const getSignUpPage = async (req, res) => {
@@ -51,7 +51,7 @@ const signInUser = async (req, res) => {
 }
 
 module.exports = {
-    getHomePage,
+    getLandingPage,
     getSignUpPage,
     addNewUser,
     getSignInPage,
