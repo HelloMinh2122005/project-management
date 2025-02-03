@@ -1,8 +1,7 @@
 const user = require('../models/users.models')
 
-const signUp = async (req, res) => {
+const signUp = async (req) => {
     try {
-        console.log('>>>req.body:      ', req.body)
         const holderUser = await user.findOne({
             $or: [
                 { email: req.body.email },
@@ -10,18 +9,33 @@ const signUp = async (req, res) => {
             ]
         })
         if (holderUser) {
-            return res.status(400).json({ message: 'User name or Email already exists' })
+            return { status: 400, message: 'User name or Email already exists' };
         }
         const newUser = await user.create(req.body)
-        return res.status(201).json({
-            message: 'new user created',
-            newUser
+        return { status: 201, message: 'New user created', newUser };
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+const signIn = async (req) => {
+    try {
+        const holderUser = await user.findOne({
+            $or: [
+                { email: req.body.username_email },
+                { username: req.body.username_email }
+            ]
         })
+        if (!holderUser || holderUser.password !== req.body.password) {
+            return { status: 401, message: 'Invalid username or password' };
+        }
+        return { status: 200, message: 'Sign in successful', holderUser };
     } catch (error) {
         throw new Error(error)
     }
 }
 
 module.exports = {
-    signUp
+    signUp,
+    signIn
 }

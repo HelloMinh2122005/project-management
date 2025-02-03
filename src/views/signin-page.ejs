@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Sign In Page</h1>
+
+    <form action="/signinPOST" method="POST">
+        <label for="username">Username or Email</label> <br>
+        <input type="text" name="username_email" placeholder="Username"><br><br>
+
+        <label for="password">Password</label> <br>
+        <input type="password" name="password" placeholder="Password"><br><br>
+
+        <button type="submit">Sign In</button>
+    </form>
+
+    <% if (typeof errorMessage !=='undefined' && errorMessage) { %>
+        <script>
+            alert("<%= errorMessage %>");
+        </script>
+        <% } %>
+</body>
+
+</html>
