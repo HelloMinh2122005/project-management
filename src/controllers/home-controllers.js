@@ -34,6 +34,7 @@ const signInUser = async (req, res) => {
     try {
         const result = await signIn(req);
         if (result.status === 200) {
+            req.session.user = req.body;
             return res.render('welcome-page.ejs', { errorMessage: result.message });
         } else {
             return res.render('signin-page.ejs', { errorMessage: result.message });

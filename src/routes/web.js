@@ -3,13 +3,14 @@ const { getHomePage, getSignUpPage, addNewUser, getSignInPage, signInUser, getWe
 const { signUp } = require('../services/user.service')
 const { addProject } = require('../services/project.service')
 const { addTask } = require('../services/task.service')
+const { ensureAuthenticated } = require('../auth/auth-session')
 const router = express.Router()
 
 // init router
 router.get('/', getHomePage)
 router.get('/signup', getSignUpPage)
 router.get('/signin', getSignInPage)
-router.get('/welcome', getWelcomePage)
+router.get('/welcome', ensureAuthenticated, getWelcomePage)
 
 // init function
 router.post('/signupPOST', addNewUser)
