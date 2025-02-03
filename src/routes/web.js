@@ -1,5 +1,5 @@
 const express = require('express')
-const { getHomePage, getSignUpPage, addNewUser, getSignInPage, signInUser, getWelcomePage } = require('../controllers/home-controllers')
+const { getLandingPage, getSignUpPage, addNewUser, getSignInPage, signInUser, getWelcomePage } = require('../controllers/home-controllers')
 const { signUp } = require('../services/user.service')
 const { addProject } = require('../services/project.service')
 const { addTask } = require('../services/task.service')
@@ -7,7 +7,7 @@ const { ensureAuthenticated } = require('../auth/auth-session')
 const router = express.Router()
 
 // init router
-router.get('/', getHomePage)
+router.get('/', getLandingPage)
 router.get('/signup', getSignUpPage)
 router.get('/signin', getSignInPage)
 router.get('/welcome', ensureAuthenticated, getWelcomePage)
