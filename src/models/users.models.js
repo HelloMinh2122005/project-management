@@ -12,8 +12,7 @@ const userSchema = new mongoose.Schema({
         default: uuidv4
     },
     name: {
-        type: String,
-        required: true
+        type: String
     },
     avatar: {
         type: String
