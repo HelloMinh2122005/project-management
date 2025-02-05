@@ -1,6 +1,5 @@
 'use strict';
 
-require('dotenv').config();
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
@@ -13,7 +12,7 @@ const taskSchema = new mongoose.Schema({
     },
     project: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
+        ref: 'PROJECT',
         required: true
     },
     dayStart: {

@@ -1,17 +1,16 @@
 'use strict';
 
-require('dotenv').config();
 const mongoose = require('mongoose');
 
 const userTasksSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'USER',
         required: true
     },
     task: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task',
+        ref: 'TASK',
         required: true
     },
     status: {

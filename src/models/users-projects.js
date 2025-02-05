@@ -1,17 +1,16 @@
 'use strict';
 
-require('dotenv').config();
 const mongoose = require('mongoose');
 
 const users_projects = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'USER',
         required: true
     },
     project: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
+        ref: 'PROJECT',
         required: true
     },
     feedback: {

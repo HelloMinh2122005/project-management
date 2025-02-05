@@ -1,6 +1,5 @@
 'use strict';
 
-require('dotenv').config();
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
