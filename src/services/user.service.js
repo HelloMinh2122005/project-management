@@ -39,7 +39,17 @@ const signIn = async (req) => {
     }
 }
 
+const logOut = async (req, res) => {
+    try {
+        req.session.destroy();
+        return { status: 200, message: 'Logged out' };
+    } catch (error) {
+        return { status: 500, message: 'Internal server error' };
+    }
+}
+
 module.exports = {
     signUp,
-    signIn
+    signIn,
+    logOut
 }

@@ -1,4 +1,4 @@
-const { signUp, signIn } = require('../services/user.service');
+const { signUp, signIn, logOut } = require('../services/user.service');
 const { authUser } = require('../auth/auth-session');
 
 const getLandingPage = async (req, res) => {
@@ -52,6 +52,19 @@ const signInUser = async (req, res) => {
     }
 }
 
+const logoutUser = async (req, res) => {
+    try {
+        const result = await logOut(req, res);
+        if (result.status === 200) {
+            return res.redirect('/signin');
+        }
+        req.flash('error', result.message);
+        return res.redirect('/welcome');
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 const authenticationUser = (req, res, next) => {
     if (authUser(req)) {
         return next();
@@ -66,5 +79,6 @@ module.exports = {
     getSignInPage,
     signInUser,
     getWelcomePage,
-    authenticationUser
+    authenticationUser,
+    logoutUser
 }
