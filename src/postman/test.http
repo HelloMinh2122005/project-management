@@ -1,0 +1,6 @@
+POST http://localhost:8081/test_get_user
+Content-Type: application/json
+
+{
+    "id": "efd6b006-5519-4512-8cef-ffb696c7e8d4"
+}

@@ -48,8 +48,49 @@ const logOut = async (req, res) => {
     }
 }
 
+const getUserByID = async (req, res) => {
+    try {
+        const holderUser = await user.findOne({ id: req.body.id })
+        if (!holderUser) {
+            return res.status(404).json({
+                message: 'User not found'
+            })
+        }
+        return res.status(200).json({
+            message: 'User found',
+            holderUser
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+const getUserByName = async (req, res) => {
+    try {
+        const holderUser = await user.findOne({
+            $or: [
+                { name: req.body.name },
+                { username: req.body.name }
+            ]
+        })
+        if (!holderUser) {
+            return res.status(404).json({
+                message: 'User not found'
+            })
+        }
+        return res.status(200).json({
+            message: 'User found',
+            holderUser
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 module.exports = {
     signUp,
     signIn,
-    logOut
+    logOut,
+    getUserByID,
+    getUserByName
 }

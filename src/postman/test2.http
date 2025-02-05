@@ -1,0 +1,6 @@
+POST http://localhost:8081/test_get_user_by_name
+Content-Type: application/json
+
+{
+    "name": "Phan Dinh Minh"
+}

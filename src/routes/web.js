@@ -1,24 +1,42 @@
-const express = require('express')
-const { getLandingPage, getSignUpPage, addNewUser, getSignInPage, signInUser, getWelcomePage, authenticationUser, logoutUser } = require('../controllers/home-controllers')
-const { signUp } = require('../services/user.service')
-const { addProject } = require('../services/project.service')
-const { addTask } = require('../services/task.service')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-// init router
-router.get('/', getLandingPage)
-router.get('/signup', getSignUpPage)
-router.get('/signin', getSignInPage)
-router.get('/welcome/:id', authenticationUser, getWelcomePage)
+// Import controllers
+const {
+    getLandingPage,
+    getSignUpPage,
+    addNewUser,
+    getSignInPage,
+    signInUser,
+    getWelcomePage,
+    logoutUser,
+    authenticationUser
+} = require('../controllers/home-controllers');
 
-// init function
-router.post('/signupPOST', addNewUser)
-router.post('/signinPOST', signInUser)
-router.post('/logoutPOST', logoutUser)
 
-//test
-router.use('/test_add_user', signUp)
-router.use('/test_add_project', addProject)
-router.use('/test_add_user_project', addTask)
+// Import services for testing
+const { signUp, getUserByID, getUserByName } = require('../services/user.service');
+const { addProject } = require('../services/project.service');
+const { addTask } = require('../services/task.service');
 
-module.exports = router
+// ------------------ Public Routes ------------------ //
+router.get('/', getLandingPage);
+router.get('/signup', getSignUpPage);
+router.get('/signin', getSignInPage);
+router.post('/signupPOST', addNewUser);
+router.post('/signinPOST', signInUser);
+router.post('/logoutPOST', logoutUser);
+
+// ------------------ Protected Routes ------------------ //
+router.use(authenticationUser);
+
+router.get('/welcome/:id', getWelcomePage);
+
+// ------------------ Test Routes ------------------ //
+router.use('/test_add_user', signUp);
+router.use('/test_add_project', addProject);
+router.use('/test_add_user_project', addTask);
+router.use('/test_get_user', getUserByID);
+router.use('/test_get_user_by_name', getUserByName);
+
+module.exports = router;
