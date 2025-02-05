@@ -1,10 +1,10 @@
-const ensureAuthenticated = (req, res, next) => {
+const authUser = (req) => {
     if (req.session && req.session.user) {
-        return next();
+        return true;
     }
-    return res.redirect('/signin');
+    return false;
 }
 
 module.exports = {
-    ensureAuthenticated
+    authUser
 }

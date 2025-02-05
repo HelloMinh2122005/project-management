@@ -1,4 +1,5 @@
 const { signUp, signIn } = require('../services/user.service');
+const { authUser } = require('../auth/auth-session');
 
 const getLandingPage = async (req, res) => {
     return res.render('landing-page.ejs');
@@ -50,11 +51,19 @@ const signInUser = async (req, res) => {
     }
 }
 
+const authenticationUser = (req, res, next) => {
+    if (authUser(req)) {
+        return next();
+    }
+    return res.redirect('/signin');
+};
+
 module.exports = {
     getLandingPage,
     getSignUpPage,
     addNewUser,
     getSignInPage,
     signInUser,
-    getWelcomePage
+    getWelcomePage,
+    authenticationUser
 }
