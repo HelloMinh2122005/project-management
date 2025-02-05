@@ -44,12 +44,20 @@ router.post('/signinPOST', signIn);
 router.post('/signupPOST', signUp);
 
 // router.use(authenticationUser);
-router.post('/addProjectPOST', addProject);
-router.post('/addTaskPOST', addTask);
 router.get('/getUserByIdGET', getUserByID);
 router.get('/getUserByNameGET', getUserByName);
-router.get('/getProjectPOST', getAllProjects);
 router.get('/getAllUserGET', getAllUsers);
+
+// project
+router.post('/addProjectPOST', addProject);
+router.get('/getProjectPOST', getAllProjects);
+
+// task
+router.post('/addTaskPOST', addTask);
+
+// notification
+
+// post 
 
 // ------------------ Protected Routes ------------------ //
 
