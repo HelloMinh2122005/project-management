@@ -13,10 +13,6 @@ const joinRequestSchema = new mongoose.Schema({
         ref: 'PROJECT',
         required: true
     },
-    daySent: {
-        type: Date,
-        default: Date.now
-    },
     content: {
         type: String
     },

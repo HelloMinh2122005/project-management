@@ -13,9 +13,18 @@ const notificationSchema = new mongoose.Schema({
         enum: ['task', 'project', 'join request', 'friend'],
         required: true
     },
-    content: { type: String, required: true },
-    link: { type: String, required: false },
-    isread: { type: Boolean, default: false },
+    content: {
+        type: String,
+        required: true
+    },
+    link: {
+        type: String,
+        required: false
+    },
+    isread: {
+        type: Boolean,
+        default: false
+    },
 }, {
     collection: 'NOTIFICATIONS',
     timestamps: true

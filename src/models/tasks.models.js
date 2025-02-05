@@ -15,11 +15,7 @@ const taskSchema = new mongoose.Schema({
         ref: 'PROJECT',
         required: true
     },
-    dayStart: {
-        type: Date,
-        default: Date.now
-    },
-    dayEnd: {
+    deadline: {
         type: Date
     },
     isTaken: {

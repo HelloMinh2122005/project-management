@@ -20,11 +20,7 @@ var postSchema = new mongoose.Schema({
     },
     content: {
         type: String
-    },
-    dayCreated: {
-        type: Date,
-        default: Date.now
-    },
+    }
 });
 
 module.exports = mongoose.model('POST', postSchema);

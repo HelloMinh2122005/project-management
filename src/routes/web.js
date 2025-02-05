@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Import controllers
+// controllers
 const {
     getLandingPage,
     getSignUpPage,
@@ -14,9 +14,9 @@ const {
 } = require('../controllers/home-controllers');
 
 
-// Import services for testing
+// services for testing
 const { signUp, getUserByID, getUserByName } = require('../services/user.service');
-const { addProject } = require('../services/project.service');
+const { addProject, getAllProjects } = require('../services/project.service');
 const { addTask } = require('../services/task.service');
 
 // ------------------ Public Routes ------------------ //
@@ -28,7 +28,7 @@ router.post('/signinPOST', signInUser);
 router.post('/logoutPOST', logoutUser);
 
 // ------------------ Protected Routes ------------------ //
-router.use(authenticationUser);
+// router.use(authenticationUser);
 
 router.get('/welcome/:id', getWelcomePage);
 
@@ -38,5 +38,6 @@ router.use('/test_add_project', addProject);
 router.use('/test_add_user_project', addTask);
 router.use('/test_get_user', getUserByID);
 router.use('/test_get_user_by_name', getUserByName);
+router.use('/test_get_all_projects', getAllProjects);
 
 module.exports = router;

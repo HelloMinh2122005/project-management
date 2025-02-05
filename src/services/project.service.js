@@ -22,6 +22,19 @@ const addProject = async (req, res) => {
     }
 }
 
+const getAllProjects = async (req, res) => {
+    try {
+        const projects = await project.find().sort({ createdAt: -1 })
+        return res.status(200).json({
+            message: 'All projects',
+            projects
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 module.exports = {
-    addProject
+    addProject,
+    getAllProjects
 }

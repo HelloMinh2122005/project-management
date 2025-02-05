@@ -15,10 +15,6 @@ const projectSchema = new mongoose.Schema({
         ref: 'USER',
         required: true
     },
-    dayStart: {
-        type: Date,
-        default: Date.now
-    },
     dayEnd: {
         type: Date
     },
