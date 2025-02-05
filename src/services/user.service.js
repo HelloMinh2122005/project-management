@@ -67,20 +67,38 @@ const getUserByID = async (req, res) => {
 
 const getUserByName = async (req, res) => {
     try {
-        const holderUser = await user.findOne({
+        const searchString = req.body.name
+        const users = await user.find({
             $or: [
-                { name: req.body.name },
-                { username: req.body.name }
+                { name: { $regex: searchString, $options: 'i' } },
+                { username: { $regex: searchString, $options: 'i' } }
             ]
-        })
-        if (!holderUser) {
+        });
+        if (users.length === 0) {
             return res.status(404).json({
-                message: 'User not found'
+                message: 'No users found'
             })
         }
         return res.status(200).json({
-            message: 'User found',
-            holderUser
+            message: 'Users found',
+            users
+        })
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await user.find()
+        if (users.length === 0) {
+            return res.status(404).json({
+                message: 'No users found'
+            })
+        }
+        return res.status(200).json({
+            message: 'All users',
+            users
         })
     } catch (error) {
         throw new Error(error)
@@ -92,5 +110,6 @@ module.exports = {
     signIn,
     logOut,
     getUserByID,
-    getUserByName
+    getUserByName,
+    getAllUsers
 }

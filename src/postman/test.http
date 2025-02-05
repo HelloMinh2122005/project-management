@@ -1,4 +1,4 @@
-POST http://localhost:8081/test_get_all_projects
+GET http://localhost:8081/getAllUserGET
 Content-Type: application/json
 
 {

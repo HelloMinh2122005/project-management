@@ -15,7 +15,7 @@ const {
 
 
 // services for testing
-const { signUp, getUserByID, getUserByName, signIn } = require('../services/user.service');
+const { signUp, getUserByID, getUserByName, signIn, getAllUsers } = require('../services/user.service');
 const { addProject, getAllProjects } = require('../services/project.service');
 const { addTask } = require('../services/task.service');
 
@@ -37,20 +37,21 @@ router.post('/logoutPOST_t', logoutUser);
 
 // post 
 
-
+// ------------------------------------ //
 // export routes API 
 // user
 router.post('/signinPOST', signIn);
 router.post('/signupPOST', signUp);
+
+// router.use(authenticationUser);
 router.post('/addProjectPOST', addProject);
 router.post('/addTaskPOST', addTask);
 router.get('/getUserByIdGET', getUserByID);
-router.get('/getUserByIdGET/', getUserByName);
+router.get('/getUserByNameGET', getUserByName);
 router.get('/getProjectPOST', getAllProjects);
-
+router.get('/getAllUserGET', getAllUsers);
 
 // ------------------ Protected Routes ------------------ //
-// router.use(authenticationUser);
 
 router.get('/welcome/:id', getWelcomePage);
 

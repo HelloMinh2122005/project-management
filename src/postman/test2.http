@@ -1,4 +1,4 @@
-POST http://localhost:8081/test_get_user_by_name
+GET http://localhost:8081/getUserByNameGET
 Content-Type: application/json
 
 {
