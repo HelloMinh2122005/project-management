@@ -15,7 +15,7 @@ const projectSchema = new mongoose.Schema({
         ref: 'USER',
         required: true
     },
-    dayEnd: {
+    deadline: {
         type: Date
     },
     status: {
