@@ -39,8 +39,9 @@ const signInUser = async (req, res) => {
         const result = await signIn(req);
         if (result.status === 200) {
             req.session.user = req.body;
+            const id = result.message.id;
             req.flash('success', result.message);
-            return res.redirect('/welcome');
+            return res.redirect(`/welcome/${id}`);
         } else {
             req.flash('error', result.message);
             return res.redirect('/signin');

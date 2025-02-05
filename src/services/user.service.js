@@ -29,7 +29,11 @@ const signIn = async (req) => {
         if (!holderUser || holderUser.password !== req.body.password) {
             return { status: 401, message: 'Invalid username or password' };
         }
-        return { status: 200, message: 'Sign in successful', holderUser };
+        return {
+            status: 200, message: {
+                id: holderUser.id
+            }
+        };
     } catch (error) {
         throw new Error(error)
     }

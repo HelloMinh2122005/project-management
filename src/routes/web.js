@@ -9,7 +9,7 @@ const router = express.Router()
 router.get('/', getLandingPage)
 router.get('/signup', getSignUpPage)
 router.get('/signin', getSignInPage)
-router.get('/welcome', authenticationUser, getWelcomePage)
+router.get('/welcome/:id', authenticationUser, getWelcomePage)
 
 // init function
 router.post('/signupPOST', addNewUser)
