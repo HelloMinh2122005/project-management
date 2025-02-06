@@ -47,7 +47,7 @@ const logOut = async (req, res) => {
 
 const getUserByID = async (req, res) => {
     try {
-        const holderUser = await use.findOne({ _id: req.body.id })
+        const holderUser = await use.findOne({ _id: req.body._id })
         if (!holderUser) {
             return res.status(404).json({
                 message: 'User not found'
@@ -104,11 +104,11 @@ const getAllUsers = async (req, res) => {
 
 const deleteUserById = async (req, res) => {
     try {
-        const { id } = req.body;
-        if (!mongoose.Types.ObjectId.isValid(id)) {
+        const { _id } = req.body;
+        if (!mongoose.Types.ObjectId.isValid(_id)) {
             return res.status(400).json({ message: 'Invalid user ID' });
         }
-        const holderUser = await user.findByIdAndDelete(id);
+        const holderUser = await user.findByIdAndDelete(_id);
         if (!holderUser) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -120,11 +120,11 @@ const deleteUserById = async (req, res) => {
 
 const updateUserById = async (req, res) => {
     try {
-        const { id } = req.body;
-        if (!mongoose.Types.ObjectId.isValid(id)) {
+        const { _id } = req.body;
+        if (!mongoose.Types.ObjectId.isValid(_id)) {
             return res.status(400).json({ message: 'Invalid user ID' });
         }
-        const holderUser = await user.findByIdAndUpdate(id);
+        const holderUser = await user.findByIdAndUpdate(_id);
         if (!holderUser) {
             return res.status(404).json({ message: 'User not found' });
         }

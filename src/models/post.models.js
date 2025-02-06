@@ -14,6 +14,9 @@ var postSchema = new mongoose.Schema({
     content: {
         type: String
     },
+    image: {
+        type: String,
+    },
     project: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PROJECT'
@@ -34,6 +37,9 @@ var postSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'USER'
     }
+}, {
+    collection: 'POSTS',
+    timestamps: true
 });
 
 module.exports = mongoose.model('POST', postSchema);

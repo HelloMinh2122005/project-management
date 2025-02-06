@@ -1,6 +1,9 @@
-DELETE http://localhost:8081/deleteUserByIdDELETE
+POST http://localhost:8081/addProjectPOST
 Content-Type: application/json
 
 {
-    "id": "user-id-10"
+    "manager": "67a45ac7cb4922dea9a3ebfd",
+    "deadline": "2025-02-16T00:00:00Z",
+    "title": "Test Project",
+    "description": "This is a test project"
 }

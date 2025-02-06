@@ -1,28 +1,62 @@
 const post = require('../models/post.models');
-const user_project = require('../models/users-projects');
-const user_task = require('../models/users-tasks');
+const { createNotificationPost } = require('./helpers/notification-helper');
+const { getAllMembersByIdProject } = require('./helpers/project-helper');
+const { getMemberByTaskID } = require('./task.service');
 
-const addPost = async (req, res) => {
+const addPost = async (req, res, sendResponse = true) => {
     try {
-        const newPost = await post.create(req.body)
-        createNotificationPost(newPost, res)
-        return res.status(201).json({
-            message: 'new post created',
-            newPost
-        })
-    } catch (error) {
-        throw new Error(error)
-    }
-}
+        const newPost = await post.create({
+            creator: req.body.creator,
+            title: req.body.title,
+            content: req.body.content,
+        });
+        if (!newPost) {
+            if (sendResponse) {
+                return res.status(400).json({ message: 'Post not created' });
+            } else {
+                throw new Error('Post not created');
+            }
+        }
+        const type = req.body.type;
+        let recipients;
 
-const createNotificationPost = async (newPost, res) => {
-    try {
+        if (req.body.project) {
+            const members = await getAllMembersByIdProject(req.body.project);
+            recipients = members.map(member => member._id);
+        } else if (req.body.task) {
+            const result = await getMemberByTaskID({ body: { task: req.body.task } }, res);
+            recipients = result.members.map(member => member._id);
+        } else if (req.body.friend) {
+            recipients = req.body.friend;
+        } else if (req.body.manager) {
+            recipients = req.body.manager;
+        } else if (req.body.member) {
+            recipients = req.body.member;
+        }
 
+        if (!recipients) {
+            if (sendResponse) {
+                return res.status(400).json({ message: 'Recipients not found' });
+            } else {
+                throw new Error('Recipients not found');
+            }
+        }
+
+        await createNotificationPost(newPost, recipients, type);
+
+        if (sendResponse) {
+            return res.status(201).json({
+                message: 'new post created',
+                newPost
+            });
+        } else {
+            return newPost;
+        }
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
-}
+};
 
 module.exports = {
     addPost
-}
+};
