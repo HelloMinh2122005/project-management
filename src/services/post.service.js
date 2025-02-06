@@ -57,6 +57,22 @@ const addPost = async (req, res, sendResponse = true) => {
     }
 };
 
+const getAllPosts = async (req, res) => {
+    try {
+        const posts = await post.find();
+        if (!posts) {
+            return res.status(400).json({ message: 'Posts not found' });
+        }
+        return res.status(200).json({
+            message: 'Posts found',
+            posts
+        });
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 module.exports = {
-    addPost
+    addPost,
+    getAllPosts
 };

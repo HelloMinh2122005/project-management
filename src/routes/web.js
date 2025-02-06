@@ -17,7 +17,11 @@ const {
 // services for testing
 const { signUp, getUserByID, getUserByName, signIn, getAllUsers, deleteUserById, updateUserById } = require('../services/user.service');
 const { addProject, getAllProjects } = require('../services/project.service');
-const { addTask } = require('../services/task.service');
+const { addTask, getMemberByTaskID } = require('../services/task.service');
+const { createNotification } = require('../services/notification.service');
+const { createNotificationPost } = require('../services/helpers/notification-helper');
+const { getAllMembersByIdProject } = require('../services/helpers/project-helper');
+const { addPost, getAllPosts } = require('../services/post.service');
 
 // ------------------ Public Routes ------------------ //
 
@@ -53,13 +57,22 @@ router.put('/updateUserByIdPUT', updateUserById);
 // project
 router.post('/addProjectPOST', addProject);
 router.get('/getProjectPOST', getAllProjects);
+router.get('/getMembersByIdProjectGET', getAllMembersByIdProject);
+
 
 // task
 router.post('/addTaskPOST', addTask);
+router.get('/getMemberByIdTaskGET', getMemberByTaskID);
 
 // notification
+router.post('/addNotificationPOST', createNotification);
+router.post('/addNotificationPostPOST', createNotificationPost);
+
 
 // post 
+router.post('/addPostPOST', addPost);
+router.get('/getAllPostGET', getAllPosts);
+
 
 // ------------------ Protected Routes ------------------ //
 
