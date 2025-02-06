@@ -30,7 +30,7 @@ const projectSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    feedback: {
+    quality: {
         type: String
     }
 }, {

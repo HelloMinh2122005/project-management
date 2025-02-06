@@ -3,6 +3,10 @@
 const mongoose = require('mongoose');
 
 const notificationSchema = new mongoose.Schema({
+    post: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'POST'
+    },
     recipient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'USER',
@@ -11,6 +15,10 @@ const notificationSchema = new mongoose.Schema({
     type: {
         type: String,
         enum: ['task', 'project', 'join request', 'friend'],
+        required: true
+    },
+    title: {
+        type: String,
         required: true
     },
     content: {
