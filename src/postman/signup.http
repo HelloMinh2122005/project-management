@@ -2,7 +2,6 @@ POST http://localhost:8081/signupPOST
 Content-Type: application/json
 
 {
-    "id": "user-id-10",
     "name": "Ava Harris",
     "avatar": "http://example.com/avatar10.jpg",
     "email": "avaharris@example.com",

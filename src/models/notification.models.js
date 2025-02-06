@@ -12,15 +12,6 @@ const notificationSchema = new mongoose.Schema({
         ref: 'USER',
         required: true
     },
-    type: {
-        type: String,
-        enum: ['task', 'project', 'join request', 'friend'],
-        required: true
-    },
-    title: {
-        type: String,
-        required: true
-    },
     content: {
         type: String,
         required: true
@@ -32,6 +23,15 @@ const notificationSchema = new mongoose.Schema({
     isread: {
         type: Boolean,
         default: false
+    },
+    type: {
+        type: String,
+        enum: ['new task', 'taken task', 'completed task', 'deleted task', 'manager reply task', 'member reply task', 'updated task',
+            'new project', 'completed project', 'deleted project', 'manager feedback project', 'updated project',
+            'new join request', 'accepted join request', 'rejected join request', 'deleted join request',
+            'new addfriend', 'accepted addfriend', 'rejected addfriend', 'deleted addfriend',
+        ],
+        required: true
     },
 }, {
     collection: 'NOTIFICATIONS',

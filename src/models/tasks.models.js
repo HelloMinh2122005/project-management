@@ -8,12 +8,12 @@ const taskSchema = new mongoose.Schema({
         ref: 'PROJECT',
         required: true
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'USER'
+    },
     deadline: {
         type: Date
-    },
-    isTaken: {
-        type: Boolean,
-        default: false
     },
     status: {
         type: String,

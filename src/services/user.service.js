@@ -47,7 +47,7 @@ const logOut = async (req, res) => {
 
 const getUserByID = async (req, res) => {
     try {
-        const holderUser = await user.findOne({ id: req.body.id })
+        const holderUser = await use.findOne({ _id: req.body.id })
         if (!holderUser) {
             return res.status(404).json({
                 message: 'User not found'
