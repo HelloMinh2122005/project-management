@@ -1,6 +1,6 @@
-GET http://localhost:8081/getUserByNameGET
+DELETE http://localhost:8081/deleteUserByIdDELETE
 Content-Type: application/json
 
 {
-    "name": "Phan Dinh Minh"
+    "id": "user-id-10"
 }

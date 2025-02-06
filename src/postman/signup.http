@@ -1,0 +1,12 @@
+POST http://localhost:8081/signupPOST
+Content-Type: application/json
+
+{
+    "id": "user-id-10",
+    "name": "Ava Harris",
+    "avatar": "http://example.com/avatar10.jpg",
+    "email": "avaharris@example.com",
+    "phoneNumber": "012-345-6789",
+    "username": "avaharris",
+    "password": "securepassword10"
+}

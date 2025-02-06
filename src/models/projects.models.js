@@ -1,15 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
 
 const projectSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        unique: true,
-        required: true,
-        default: uuidv4
-    },
     manager: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'USER',

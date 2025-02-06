@@ -15,7 +15,7 @@ const {
 
 
 // services for testing
-const { signUp, getUserByID, getUserByName, signIn, getAllUsers } = require('../services/user.service');
+const { signUp, getUserByID, getUserByName, signIn, getAllUsers, deleteUserById, updateUserById } = require('../services/user.service');
 const { addProject, getAllProjects } = require('../services/project.service');
 const { addTask } = require('../services/task.service');
 
@@ -47,6 +47,8 @@ router.post('/signupPOST', signUp);
 router.get('/getUserByIdGET', getUserByID);
 router.get('/getUserByNameGET', getUserByName);
 router.get('/getAllUserGET', getAllUsers);
+router.delete('/deleteUserByIdDELETE', deleteUserById);
+router.put('/updateUserByIdPUT', updateUserById);
 
 // project
 router.post('/addProjectPOST', addProject);
