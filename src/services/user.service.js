@@ -1,6 +1,9 @@
 const user = require('../models/users.models')
 const mongoose = require('mongoose')
 
+// add, edit, delete, get all users, get by id, get by name
+// add friend, join request, get task 
+
 const signUp = async (req, res) => {
     try {
         const holderUser = await user.findOne({

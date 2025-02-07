@@ -3,7 +3,6 @@ const { createNotification } = require('../notification.service');
 const createNotificationPost = async (newPost, recipients, type) => {
     try {
         if (Array.isArray(recipients)) {
-            // Use Promise.all to await all notifications
             await Promise.all(recipients.map(async recipient => {
                 await createNotification({
                     post: newPost._id,
