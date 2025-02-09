@@ -18,7 +18,7 @@ const addPost = async (req, res, sendResponse = true) => {
             }
         }
         const type = req.body.type;
-        const recipients = getRecipients(req.body);
+        const recipients = await getRecipients(req.body, res, false);
 
         await createNotificationPost(newPost, recipients, type);
 
@@ -78,7 +78,7 @@ const updatePost = async (req, res, sendResponse = true) => {
             }
         }
 
-        const recipients = getRecipients(req.body);
+        const recipients = await getRecipients(req.body, res, false);
         await createNotificationPost(updatedPost, recipients, type);
 
         if (sendResponse) {
@@ -108,7 +108,7 @@ const deletePost = async (req, res, sendResponse = true) => {
             }
         }
 
-        const recipients = getRecipients(req.body);
+        const recipients = await getRecipients(req.body, res, false);
         await createNotificationPost(deletedPost, recipients, type);
 
         if (sendResponse) {

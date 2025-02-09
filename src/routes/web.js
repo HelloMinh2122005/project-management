@@ -16,7 +16,7 @@ const {
 
 // services 
 const { signUp, getUserByID, getUserByName, signIn, getAllUsers, deleteUserById, updateUserById } = require('../services/user.service');
-const { addProject, getAllProjects, updateProject, deleteProject, getProjectById, getProjectByManager, getProjectByMember, getAllMembersByIdProject } = require('../services/project.service');
+const { addProject, getAllProjects, updateProject, deleteProject, getProjectById, getProjectByMember, getAllMembersByIdProject } = require('../services/project.service');
 const { addTask, getMemberByTaskID, getAllTasks, updateTask, deleteTask, getTaskById, getProjectIdByTaskId } = require('../services/task.service');
 const { createNotification, deleteNotification, getAllNotifications } = require('../services/notification.service');
 const { createNotificationPost } = require('../services/helpers/notification-helper');
@@ -54,23 +54,22 @@ router.post('/checkVerificationCodePOST', verifyCode); // done
 router.get('/getUserByIdGET', getUserByID); // done
 router.get('/getUserByNameGET', getUserByName); // done
 router.get('/getAllUserGET', getAllUsers); // done
-router.delete('/deleteUserByIdDELETE', deleteUserById);
-router.put('/updateUserByIdPUT', updateUserById);
+router.delete('/deleteUserByIdDELETE', deleteUserById); // cascade not done
+router.patch('/updateUserByIdPATCH', updateUserById); // done 
 
 // project
 router.post('/addProjectPOST', addProject); // done
-router.put('/updateProjectByIdPUT', updateProject);
-router.delete('/deleteProjectByIdDELETE', deleteProject);
+router.patch('/updateProjectByIdPATCH', updateProject); // done
+router.delete('/deleteProjectByIdDELETE', deleteProject); // half done
 router.get('/getProjectPOST', getAllProjects); // done
 router.get('/getMembersByIdProjectGET', getAllMembersByIdProject); // half done
-router.get('/getProjectByIdGET', getProjectById);
-router.get('/getProjectByIdManagerGET', getProjectByManager);
+router.get('/getProjectByIdGET', getProjectById); // done 
 router.get('/getProjectByIdMemberGET', getProjectByMember);
 
 
-// task
+// task 
 router.post('/addTaskPOST', addTask);
-router.put('/updateTaskByIdPUT', updateTask);
+router.patch('/updateTaskByIdPATCH', updateTask);
 router.delete('/deleteTaskByIdDELETE', deleteTask);
 router.get('/getAllTaskGET', getAllTasks);
 router.get('/getTaskByIdGET', getTaskById);
@@ -88,7 +87,7 @@ router.get('/getNotificationGET', getAllNotifications);
 router.post('/addPostPOST', addPost); // done
 router.get('/getAllPostGET', getAllPosts);
 router.get('/getPostByIdGET', getPostById);
-router.put('/updatePostByIdPUT', updatePost);
+router.patch('/updatePostByIdPATCH', updatePost);
 router.delete('/deletePostByIdDELETE', deletePost);
 router.get('/getPostByIdCreatorGET', getPostByIdCreator);
 router.get('/getPostByIdProjectGET', getPostByIdProject);

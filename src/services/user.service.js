@@ -50,7 +50,7 @@ const logOut = async (req, res) => {
 
 const getUserByID = async (req, res) => {
     try {
-        const holderUser = await use.findOne({ _id: req.body._id })
+        const holderUser = await user.findOne({ _id: req.body._id })
         if (!holderUser) {
             return res.status(404).json({
                 message: 'User not found'
@@ -115,7 +115,15 @@ const deleteUserById = async (req, res) => {
         if (!holderUser) {
             return res.status(404).json({ message: 'User not found' });
         }
-        return res.status(200).json({ message: 'User deleted' });
+
+        // // Cascade delete associated records
+        // await project.deleteMany({ manager: _id });
+        // await task.deleteMany({ user: _id });
+        // await user_project.deleteMany({ user: _id });
+        // await postModel.deleteMany({ creator: _id });
+        // await postModel.deleteMany({ friend: _id });
+
+        return res.status(200).json({ message: 'User and associated records deleted' });
     } catch (error) {
         return res.status(500).json({ message: 'Internal server error' });
     }

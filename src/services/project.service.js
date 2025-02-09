@@ -1,7 +1,9 @@
 const project = require('../models/projects.models');
 const user_project = require('../models/users-projects');
+const user = require('../models/users.models');
 const { addPost, updatePost } = require('./post.service');
-const { getProjectByManager, getProjectByMember, getAllMembersByIdProject } = require('./helpers/project-helper');
+const { getProjectByMember, getAllMembersByIdProject } = require('./helpers/project-helper');
+const { getPostIDByRefID } = require('./helpers/post-helper');
 
 // get by id, get by manager, get by member
 
@@ -69,20 +71,32 @@ const updateProject = async (req, res) => {
             return res.status(400).json({ message: 'Project not found' });
         }
 
-        const updatedPost = await updatePost({
-            body: {
-                creator: req.body.manager,
-                title: 'Project updated',
-                content: `You have recently updated project ${req.body.title}`,
-                project: updatedProject._id,
-                image: req.body.image,
-                task: req.body.task,
-                friend: req.body.friend,
-                manager: req.body.manager,
-                member: req.body.member,
-                type: 'updated project'
-            }
-        }, res, false);
+        if (!req.body.manager) {
+            return res.status(400).json({ message: 'SEND AGAIN THE FUCKING HTTP' });
+        }
+        const manager = await user.findById(req.body.manager);
+        if (!manager) {
+            return res.status(400).json({ message: 'Manager not found' });
+        }
+
+        const postID = await getPostIDByRefID({ body: { project: req.body._id } }, res, false);
+
+        const updateData = {
+            _id: postID,
+            title: 'Project updated',
+            content: `${manager.name} have recently updated project ${updatedProject.title}`,
+            project: updatedProject._id,
+            type: 'updated project'
+        };
+
+        if (req.body.image) updateData.image = req.body.image;
+        if (req.body.task) updateData.task = req.body.task;
+        if (req.body.friend) updateData.friend = req.body.friend;
+        if (req.body.member) updateData.member = req.body.member;
+
+        // Dynamically require updatePost to avoid circular dependency issues
+        const { updatePost: updatePostFn } = require('./post.service');
+        const updatedPost = await updatePostFn({ body: updateData }, res, false);
 
         if (!updatedPost) {
             return res.status(400).json({ message: 'Post not updated' });
@@ -95,33 +109,51 @@ const updateProject = async (req, res) => {
     } catch (error) {
         throw new Error(error);
     }
-}
+};
 
 const deleteProject = async (req, res) => {
     try {
-        const deletedProject = await project.findByIdAndDelete(req.body._id);
+        const deletedProject = await project.findById(req.body._id);
         if (!deletedProject) {
             return res.status(400).json({ message: 'Project not found' });
         }
 
-        const updatedPost = await updatePost({
-            body: {
-                creator: req.body.manager,
-                title: 'Project removed',
-                content: `You have recently deleted project ${req.body.title}`,
-                project: deletedProject._id,
-                image: req.body.image,
-                task: req.body.task,
-                friend: req.body.friend,
-                manager: req.body.manager,
-                member: req.body.member,
-                type: 'deleted project'
-            }
-        }, res, false);
+        // delete all members
+        const deletedMembers = await user_project.deleteMany({ project: req.body._id });
+        if (!deletedMembers) {
+            return res.status(400).json({ message: 'Members not deleted' });
+        }
+
+        // fetch manager information from the deleted project
+        const manager = await user.findById(deletedProject.manager);
+        if (!manager) {
+            return res.status(400).json({ message: 'Manager not found' });
+        }
+
+        const postID = await getPostIDByRefID({ body: { project: req.body._id } }, res, false);
+
+        const updateData = {
+            _id: postID,
+            title: 'Project updated',
+            content: `${manager.name} has recently deleted project ${deletedProject.title}`,
+            project: deletedProject._id,
+            type: 'deleted project'
+        };
+
+        if (req.body.image) updateData.image = req.body.image;
+        if (req.body.task) updateData.task = req.body.task;
+        if (req.body.friend) updateData.friend = req.body.friend;
+        if (req.body.member) updateData.member = req.body.member;
+
+        // Dynamically require updatePost to avoid circular dependency issues
+        const { updatePost: updatePostFn } = require('./post.service');
+        const updatedPost = await updatePostFn({ body: updateData }, res, false);
 
         if (!updatedPost) {
             return res.status(400).json({ message: 'Post not updated' });
         }
+
+        await project.findByIdAndDelete(deletedProject._id);
 
         return res.status(200).json({
             message: 'Project deleted',
@@ -130,7 +162,7 @@ const deleteProject = async (req, res) => {
     } catch (error) {
         throw new Error(error);
     }
-}
+};
 
 const getProjectById = async (req, res) => {
     try {
@@ -153,7 +185,6 @@ module.exports = {
     updateProject,
     deleteProject,
     getProjectById,
-    getProjectByManager,
     getProjectByMember,
     getAllMembersByIdProject
 };

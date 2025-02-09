@@ -1,0 +1,9 @@
+PATCH  http://localhost:8081/updateProjectByIdPATCH
+Content-Type: application/json
+
+{
+    "_id": "67a8dd0258965f7129751e3a",
+    "manager": "67a45adccb4922dea9a3ec01",
+    "content": "Project Hello World",
+    "description": "FUCKING HELL just update this project"
+}

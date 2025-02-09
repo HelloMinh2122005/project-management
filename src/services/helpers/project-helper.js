@@ -22,37 +22,34 @@ const getAllMembersByIdProject = async (project, res, sendResponse = true) => {
     }
 };
 
-const getProjectByManager = async (req, res) => {
-    try {
-        const projects = await project.find({ manager: req.body.manager });
-        if (!projects) {
-            return res.status(400).json({ message: 'Projects not found' });
-        }
-        return res.status(200).json({
-            message: 'Projects found',
-            projects
-        });
-    } catch (error) {
-        throw new Error(error);
-    }
-}
-
-const getProjectByMember = async (req, res) => {
+const getProjectByMember = async (req, res, sendResponse = true) => {
     try {
         const projectIDs = await user_project.find({ user: req.body.member }).map(up => up.project);
         if (!projectIDs || projectIDs.length === 0) {
-            return res.status(404).json({ message: 'Projects not found' });
+            if (sendResponse) {
+                return res.status(404).json({ message: 'Projects not found' });
+            }
+            else
+                throw new Error('Projects not found');
         }
 
         const projects = await project.find({ _id: { $in: projectIDs } });
 
         if (!projects || projects.length === 0) {
-            return res.status(404).json({ message: 'Projects not found' });
+            if (sendResponse) {
+                return res.status(404).json({ message: 'Projects not found' });
+            }
+            else
+                throw new Error('Projects not found');
         }
-        return res.status(200).json({
-            message: 'Projects found',
-            projects
-        });
+
+        if (sendResponse) {
+            return res.status(200).json({
+                message: 'Projects found',
+                projects
+            });
+        }
+        return projects;
 
     } catch (error) {
         throw new Error(error);
@@ -61,6 +58,5 @@ const getProjectByMember = async (req, res) => {
 
 module.exports = {
     getAllMembersByIdProject,
-    getProjectByManager,
     getProjectByMember
 };
