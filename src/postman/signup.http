@@ -2,10 +2,10 @@ POST http://localhost:8081/signupPOST
 Content-Type: application/json
 
 {
-    "name": "Ava Harris",
+    "name": "Phan Dinh Minh",
     "avatar": "http://example.com/avatar10.jpg",
-    "email": "avaharris@example.com",
+    "email": "phandinhminh48@gamil.com",
     "phoneNumber": "012-345-6789",
-    "username": "avaharris",
+    "username": "phandinhminh",
     "password": "securepassword10"
 }

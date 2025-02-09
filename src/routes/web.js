@@ -30,11 +30,11 @@ router.get('/', getLandingPage);
 router.get('/signup', getSignUpPage);
 router.get('/signin', getSignInPage);
 
-// actions routes test code
-// user 
-router.post('/signupPOST_t', addNewUser);
-router.post('/signinPOST_t', signInUser);
-router.post('/logoutPOST_t', logoutUser);
+// // actions routes test code
+// // user 
+// router.post('/signupPOST_t', addNewUser);
+// router.post('/signinPOST_t', signInUser);
+// router.post('/logoutPOST_t', logoutUser);
 // project 
 
 // task 
@@ -42,11 +42,11 @@ router.post('/logoutPOST_t', logoutUser);
 // post 
 
 // ------------------------------------ //++++++
-// export routes API 
+// export routes API  
 // user
 router.post('/loginPOST', signIn); // done
 router.post('/signupPOST', signUp); // done
-router.post('/sendVerificationCodePOST', sendEmail);
+router.post('/sendVerificationCodePOST', sendEmail); // done
 router.post('/checkVerificationCodePOST', verifyCode);
 
 
