@@ -47,10 +47,10 @@ router.get('/signin', getSignInPage);
 router.post('/loginPOST', signIn); // done
 router.post('/signupPOST', signUp); // done
 router.post('/sendVerificationCodePOST', sendEmail); // done
-router.post('/checkVerificationCodePOST', verifyCode);
+router.post('/checkVerificationCodePOST', verifyCode); // done
 
 
-router.use(authenticationUser);
+// router.use(authenticationUser);
 router.get('/getUserByIdGET', getUserByID); // done
 router.get('/getUserByNameGET', getUserByName); // done
 router.get('/getAllUserGET', getAllUsers); // done

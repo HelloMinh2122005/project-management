@@ -1,0 +1,6 @@
+DELETE  http://localhost:8081/deleteNotificationByIdDELETE
+Content-Type: application/json
+
+{
+    "_id": "67a45ac7cb4922dea9a3ebfd"
+}
