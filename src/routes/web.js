@@ -21,6 +21,7 @@ const { addTask, getMemberByTaskID, getAllTasks, updateTask, deleteTask, getTask
 const { createNotification, deleteNotification, getAllNotifications } = require('../services/notification.service');
 const { createNotificationPost } = require('../services/helpers/notification-helper');
 const { addPost, getAllPosts, getPostById, updatePost, deletePost, getPostByIdCreator, getPostByIdProject } = require('../services/post.service');
+const { sendEmail, verifyCode } = require('../auth/reset-password');
 
 // ------------------ Public Routes ------------------ //
 
@@ -45,8 +46,11 @@ router.post('/logoutPOST_t', logoutUser);
 // user
 router.post('/loginPOST', signIn); // done
 router.post('/signupPOST', signUp); // done
+router.post('/sendVerificationCodePOST', sendEmail);
+router.post('/checkVerificationCodePOST', verifyCode);
 
-// router.use(authenticationUser);
+
+router.use(authenticationUser);
 router.get('/getUserByIdGET', getUserByID); // done
 router.get('/getUserByNameGET', getUserByName); // done
 router.get('/getAllUserGET', getAllUsers); // done

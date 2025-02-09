@@ -14,13 +14,16 @@
     "morgan": "^1.10.0"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-flash": "^0.0.2",
     "express-session": "^1.18.1",
     "mongoose": "^8.9.6",
+    "nodemailer": "^6.10.0",
     "uuid": "^11.0.5"
   }
 }
