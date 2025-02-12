@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors');
 const session = require('express-session');
-const router = require('./routes/web')
+const router = require('./routes/index.routes')
 const morgan = require('morgan')
 
 // Middleware

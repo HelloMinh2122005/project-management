@@ -1,0 +1,54 @@
+'use strict'
+
+const mongoose = require('mongoose');
+
+var taskSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true,
+        index: true,
+    },
+    description: {
+        type: String,
+        required: true,
+        index: true,
+    },
+    project: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'PROJECT',
+            required: true,
+            index: true,
+        }
+    },
+    file: {
+        type: String,
+    },
+    status: {
+        type: String,
+        enum: ["to do", "in progress", "done"],
+        default: 'to do',
+    },
+    participants: [{
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'USER'
+        },
+        name: {
+            type: String
+        },
+    }],
+    member_comment: {
+        type: String
+    },
+    manager_comment: {
+        type: String
+    }
+}, {
+    timestamps: true,
+    collection: 'TASKS'
+});
+
+
+module.exports = mongoose.model('TASK', taskSchema);
