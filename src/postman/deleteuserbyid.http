@@ -1,7 +1,0 @@
-DELETE  http://localhost:8081/deleteProjectByIdDELETE
-Content-Type: application/json
-
-{
-    "_id": "67a4d514d55d4e090819ef6e",
-    "manager": "67a45ac7cb4922dea9a3ebfd"
-}

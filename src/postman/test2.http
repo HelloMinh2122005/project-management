@@ -1,9 +1,0 @@
-POST http://localhost:8081/addProjectPOST
-Content-Type: application/json
-
-{
-    "manager": "67a45adccb4922dea9a3ec01",
-    "deadline": "2025-02-16T00:00:00Z",
-    "title": "Test Project 22222",
-    "description": "This is a test project 22"
-}

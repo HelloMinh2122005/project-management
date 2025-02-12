@@ -1,7 +1,0 @@
-POST http://localhost:8081/checkVerificationCodePOST
-Content-Type: application/json
-
-{
-    "email": "phandinhminh48@gamil.com",
-    "code": "978239"
-}

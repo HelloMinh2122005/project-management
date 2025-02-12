@@ -5,8 +5,6 @@ const cors = require('cors');
 const session = require('express-session');
 const router = require('./routes/web')
 const morgan = require('morgan')
-const configViewEngine = require('./configs/view-engine')
-const flash = require('express-flash');
 
 // Middleware
 app.use(morgan('dev'))
@@ -23,11 +21,8 @@ app.use(session({
         maxAge: Number(process.env.SESSION_LIFETIME)
     }
 }));
-app.use(flash());
 app.use(cors());
 
-// View engine setup
-configViewEngine(app)
 
 // Database
 require('./configs/database')
@@ -37,7 +32,5 @@ app.use('/', router)
 
 // Error handlers
 
-
-// test code
 
 module.exports = app  

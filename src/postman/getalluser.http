@@ -1,6 +1,0 @@
-GET http://localhost:8081/getAllUserGET
-Content-Type: application/json
-
-{
-    
-}
