@@ -1,7 +1,27 @@
 'use strict'
 
-class UserServices {
+const User = require('../models/user.model');
 
+class UserServices {
+    async getAllUsers() {
+        return await User.find();
+    }
+
+    async getUserById(userId) {
+        return await User.findById(userId);
+    }
+
+    async createUser(user) {
+        return await User.create(user);
+    }
+
+    async updateUser(userId, user) {
+        return await User.findByIdAndUpdate(userId, user, { new: true });
+    }
+
+    async deleteUser(userId) {
+        return await User.findByIdAndDelete(userId);
+    }
 }
 
 module.exports = UserServices;
