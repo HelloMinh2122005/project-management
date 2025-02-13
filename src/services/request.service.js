@@ -1,52 +1,25 @@
 'use strict'
 
-import requestRoot from './../models/request.model.js';
+import requestRoot from '../models/request.model.js';
 const { REQUEST, FRIEND_REQUEST, PROJECT_JOIN_REQUEST, TASK_JOIN_REQUEST } = requestRoot;
+import RequestFactory from './utils/requestFactory.js';
 
-class RequestFactory {
-    static async createRequest(type, payload) {
-        const mapping = {
-            friend: {
-                model: FRIEND_REQUEST,
-                getSubAttributes: (payload) => payload.attributes
-            },
-            project: {
-                model: PROJECT_JOIN_REQUEST,
-                getSubAttributes: (payload) => payload.attributes
-            },
-            task: {
-                model: TASK_JOIN_REQUEST,
-                getSubAttributes: (payload) => payload.attributes
-            }
-        };
+class RequestService {
+    async createRequest(type, payload) {
+        return await RequestFactory.createRequest(type, payload);
+    }
 
-        const config = mapping[type];
-        if (!config) {
-            throw new Error('Invalid request type');
-        }
+    async getAllRequests() {
+        return await REQUEST.find();
+    }
 
-        const subAttributes = config.getSubAttributes(payload);
-        const subEntry = await config.model.create(subAttributes);
-        if (!subEntry) {
-            throw new Error(`Error creating ${type} request sub-entry`);
-        }
+    async getRequestById(requestId) {
+        return await REQUEST.findById(requestId);
+    }
 
-        const newAttributes = {
-            ...payload.attributes,
-            subEntryId: subEntry._id
-        };
-
-        const mainRequestPayload = {
-            ...payload,
-            attributes: newAttributes,
-        };
-
-        const newRequest = await REQUEST.create(mainRequestPayload);
-        if (!newRequest) {
-            throw new Error('Error creating main request');
-        }
-        return newRequest;
+    async deleteRequest(requestId) {
+        return await REQUEST.findByIdAndDelete(requestId);
     }
 }
 
-export default RequestFactory;
+export default RequestService;
