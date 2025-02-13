@@ -1,13 +1,13 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const notificationRouter = require('./notification.routes');
-const requestRouter = require('./request.routes');
-const taskRouter = require('./task.routes');
-const projectRouter = require('./project.routes');
-const userRouter = require('./user.routes');
-const accessRouter = require('./other/access.routes');
-const forgotPasswordRouter = require('./other/forgotPassword.routes');
+import notificationRouter from './notification.routes.js';
+import requestRouter from './request.routes.js';
+import taskRouter from './task.routes.js';
+import projectRouter from './project.routes.js';
+import userRouter from './user.routes.js';
+import accessRouter from './other/access.routes.js';
+import forgotPasswordRouter from './other/forgotPassword.routes.js';
 
 // Non authenticated routes
 router.use('/forgot-password', forgotPasswordRouter);
@@ -22,5 +22,4 @@ router.use('/task', taskRouter);
 router.use('/project', projectRouter);
 router.use('/user', userRouter);
 
-
-module.exports = router;
+export default router;

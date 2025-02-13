@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const RequestService = require('../services/request.service');
-const RequestController = require('../controllers/request.controller');
+import RequestService from '../services/request.service.js';
+import RequestController from '../controllers/request.controller.js';
 
 const requestService = new RequestService();
 const requestController = new RequestController(requestService);
 
-module.exports = router;
+export default router;

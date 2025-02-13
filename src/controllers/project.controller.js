@@ -7,4 +7,4 @@ class ProjectController {
 
 }
 
-module.exports = ProjectController;
+export default ProjectController;

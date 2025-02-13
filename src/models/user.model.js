@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var userSchema = new mongoose.Schema({
     name: {
@@ -108,4 +108,4 @@ var userSchema = new mongoose.Schema({
     collection: 'USERS'
 });
 
-module.exports = mongoose.model('USER', userSchema);
+export default mongoose.model('USER', userSchema);

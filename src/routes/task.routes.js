@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const TaskService = require('../services/task.service');
-const TaskController = require('../controllers/task.controller');
+import TaskService from '../services/task.service.js';
+import TaskController from '../controllers/task.controller.js';
 
 const taskService = new TaskService();
 const taskController = new TaskController(taskService);
 
-module.exports = router;
+export default router;

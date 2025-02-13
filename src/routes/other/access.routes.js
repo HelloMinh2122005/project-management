@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const checkTokenKey = require('../../middlewares/auth/checkTokenKey');
+import checkTokenKey from '../../middlewares/auth/checkTokenKey.js';
 
-const AccessController = require('../../controllers/other/access.controller');
-const AccessService = require('../../services/other/access.service');
+import AccessController from '../../controllers/other/access.controller.js';
+import AccessService from '../../services/other/access.service.js';
 
 const accessService = new AccessService();
 const accessController = new AccessController(accessService);
@@ -15,5 +15,4 @@ router.post('/signup', accessController.signup.bind(accessController));
 // authenticate all routes below
 router.use(checkTokenKey);
 
-
-module.exports = router;
+export default router;

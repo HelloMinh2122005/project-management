@@ -1,6 +1,4 @@
-'use strict'
-
-const notification = require('../models/notification.model');
+import notification from '../models/notification.model.js';
 
 class NotificationService {
     async getAllNotifications() {
@@ -20,4 +18,4 @@ class NotificationService {
     }
 }
 
-module.exports = NotificationService;   
+export default NotificationService;

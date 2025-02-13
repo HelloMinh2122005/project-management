@@ -1,7 +1,8 @@
 'use strict';
 
-require('dotenv').config();
-const mongoose = require('mongoose');
+import dotenv from 'dotenv';
+dotenv.config();
+import mongoose from 'mongoose';
 
 class Database {
     constructor() {
@@ -26,4 +27,4 @@ class Database {
     }
 }
 
-module.exports = Database.getInstance();
+export default Database;

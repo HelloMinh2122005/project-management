@@ -1,6 +1,6 @@
 'use strict'
 
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 const checkTokenKey = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -18,4 +18,4 @@ const checkTokenKey = (req, res, next) => {
     }
 };
 
-module.exports = checkTokenKey;
+export default checkTokenKey;

@@ -29,4 +29,4 @@ class ForgotPasswordController {
     }
 }
 
-module.exports = ForgotPasswordController;
+export default ForgotPasswordController;

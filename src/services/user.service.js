@@ -1,6 +1,6 @@
 'use strict'
 
-const User = require('../models/user.model');
+import User from '../models/user.model.js';
 
 class UserServices {
     async getAllUsers() {
@@ -24,4 +24,4 @@ class UserServices {
     }
 }
 
-module.exports = UserServices;
+export default UserServices;

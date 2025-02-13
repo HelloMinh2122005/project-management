@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var notificationSchema = new mongoose.Schema({
     recipient: {
@@ -96,7 +96,7 @@ var task_notificationSchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = {
+export default {
     Notification: mongoose.model('NOTIFICATION', notificationSchema),
     FriendNotification: mongoose.model('FRIEND_NOTIFICATION', friend_notificationSchema),
     ProjectNotification: mongoose.model('PROJECT_NOTIFICATION', project_notificationSchema),

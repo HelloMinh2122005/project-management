@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var taskSchema = new mongoose.Schema({
     title: {
@@ -51,4 +51,4 @@ var taskSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('TASK', taskSchema);
+export default mongoose.model('TASK', taskSchema);

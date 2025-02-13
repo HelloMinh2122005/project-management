@@ -7,4 +7,4 @@ class NotificationController {
 
 }
 
-module.exports = NotificationController;
+export default NotificationController;

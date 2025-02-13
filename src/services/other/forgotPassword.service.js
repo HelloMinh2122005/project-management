@@ -1,7 +1,8 @@
-const nodemailer = require('nodemailer');
-const User = require('../../models/user.model');
-const VerificationToken = require('../../models/verificationToken.model');
-require('dotenv').config()
+import nodemailer from 'nodemailer';
+import User from '../../models/user.model.js';
+import VerificationToken from '../../models/verificationToken.model.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class ForgotPasswordService {
     async sendEmail(email) {
@@ -52,4 +53,4 @@ class ForgotPasswordService {
     }
 }
 
-module.exports = ForgotPasswordService;
+export default ForgotPasswordService;

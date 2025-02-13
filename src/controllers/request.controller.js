@@ -6,4 +6,4 @@ class RequestController {
     }
 }
 
-module.exports = RequestController;
+export default RequestController;

@@ -4,4 +4,4 @@ class ProjectService {
 
 }
 
-module.exports = ProjectService;
+export default ProjectService;

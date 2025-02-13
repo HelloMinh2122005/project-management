@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const NotificationService = require('../services/notification.service');
-const NotificationController = require('../controllers/notification.controller');
+import NotificationService from '../services/notification.service.js';
+import NotificationController from '../controllers/notification.controller.js';
 
 const notificationService = new NotificationService();
 const notificationController = new NotificationController(notificationService);
 
-module.exports = router;
+export default router;

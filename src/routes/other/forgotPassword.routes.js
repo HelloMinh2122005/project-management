@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const ForgotPasswordService = require('../../services/other/forgotPassword.service');
-const ForgotPasswordController = require('../../controllers/other/forgotPassword.controller');
+import ForgotPasswordService from '../../services/other/forgotPassword.service.js';
+import ForgotPasswordController from '../../controllers/other/forgotPassword.controller.js';
 
 const forgotPasswordService = new ForgotPasswordService();
 const forgotPasswordController = new ForgotPasswordController(forgotPasswordService);
@@ -10,4 +10,4 @@ const forgotPasswordController = new ForgotPasswordController(forgotPasswordServ
 router.post('/send-verification-code', forgotPasswordController.sendEmail.bind(forgotPasswordController));
 router.post('/verify-code', forgotPasswordController.verifyCode.bind(forgotPasswordController));
 
-module.exports = router;
+export default router;

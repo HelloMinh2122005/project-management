@@ -24,4 +24,4 @@ class AccessController {
     }
 }
 
-module.exports = AccessController;
+export default AccessController;

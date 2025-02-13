@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var requestSchema = new mongoose.Schema({
     recipients: {
@@ -103,7 +103,7 @@ var task_join_requestSchema = new mongoose.Schema({
     collection: 'TASK_JOIN_REQUESTS'
 });
 
-module.exports = {
+export default {
     REQUEST: mongoose.model('REQUEST', requestSchema),
     FRIEND_REQUEST: mongoose.model('FRIEND_REQUEST', friend_requestSchema),
     PROJECT_JOIN_REQUEST: mongoose.model('PROJECT_JOIN_REQUEST', project_join_requestSchema),

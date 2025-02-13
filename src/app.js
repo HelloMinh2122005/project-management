@@ -1,10 +1,13 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const cors = require('cors');
-const session = require('express-session');
-const router = require('./routes/index.routes')
-const morgan = require('morgan')
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import cors from 'cors';
+import session from 'express-session';
+import router from './routes/index.routes.js';
+import morgan from 'morgan';
+import Database from './configs/database.js';
+
+const app = express();
 
 // Middleware
 app.use(morgan('dev'))
@@ -23,14 +26,12 @@ app.use(session({
 }));
 app.use(cors());
 
-
-// Database
-require('./configs/database')
+// Initialize Database
+Database.getInstance();
 
 // Routes
 app.use('/', router)
 
 // Error handlers
 
-
-module.exports = app  
+export default app;

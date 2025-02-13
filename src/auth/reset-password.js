@@ -1,9 +1,9 @@
-const token = require('../models/token-key.models')
-const user = require('../models/users.models')
-const nodemailer = require('nodemailer');
+import token from '../models/token-key.models.js';
+import user from '../models/users.models.js';
+import nodemailer from 'nodemailer';
 
-require('dotenv').config()
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 const sendEmail = async (req, res) => {
     try {
@@ -59,7 +59,7 @@ const verifyCode = async (req, res) => {
     }
 }
 
-module.exports = {
+export default {
     sendEmail,
     verifyCode
-}
+};

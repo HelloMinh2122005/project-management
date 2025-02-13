@@ -6,4 +6,4 @@ class TaskController {
     }
 }
 
-module.exports = TaskController; 
+export default TaskController; 

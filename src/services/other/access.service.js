@@ -1,8 +1,8 @@
 'use strict';
 
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const User = require('../../models/user.model');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import User from '../../models/user.model.js';
 
 class AccessService {
     async login(email, password) {
@@ -57,4 +57,4 @@ class AccessService {
 
 }
 
-module.exports = AccessService;
+export default AccessService;

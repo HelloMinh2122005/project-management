@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var projectSchema = new mongoose.Schema({
     title: {
@@ -56,4 +56,4 @@ var projectSchema = new mongoose.Schema({
     collection: 'PROJECTS'
 });
 
-module.exports = mongoose.model('PROJECT', projectSchema);
+export default mongoose.model('PROJECT', projectSchema);

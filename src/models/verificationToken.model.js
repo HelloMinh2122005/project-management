@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var verificationTokenSchema = new mongoose.Schema({
     email: {
@@ -17,4 +17,4 @@ var verificationTokenSchema = new mongoose.Schema({
     collection: "VERIFICATION TOKENS"
 });
 
-module.exports = mongoose.model('VERIFICATION TOKEN', verificationTokenSchema);
+export default mongoose.model('VERIFICATION TOKEN', verificationTokenSchema);
