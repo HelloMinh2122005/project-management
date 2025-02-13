@@ -34,7 +34,7 @@ var requestSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ['friend', 'project_join', 'task_join'],
+        enum: ['friend', 'project', 'task'],
         required: true,
     },
     attributes: {
@@ -82,15 +82,15 @@ var project_join_requestSchema = new mongoose.Schema({
 });
 
 var task_join_requestSchema = new mongoose.Schema({
+    request: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'REQUEST',
+            required: true,
+            index: true,
+        }
+    },
     task: {
-        request: {
-            id: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'REQUEST',
-                required: true,
-                index: true,
-            }
-        },
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'TASK',
