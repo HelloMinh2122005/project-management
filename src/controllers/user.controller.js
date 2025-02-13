@@ -58,6 +58,24 @@ class UserController {
             res.status(400).send(error.message);
         }
     }
+
+    async checkUserExists(req, res, sendResponse = true) {
+        try {
+            const user = await this.UserService.checkUserExists(req.body.email, req.body.username);
+            if (user) {
+                if (sendResponse) {
+                    res.status(409).send('User already exists');
+                }
+                return true;
+            }
+            return false;
+        } catch (error) {
+            if (sendResponse) {
+                res.status(400).send(error.message);
+            }
+            throw new Error(error.message);
+        }
+    }
 }
 
 module.exports = UserController;
