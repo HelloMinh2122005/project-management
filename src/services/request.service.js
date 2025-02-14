@@ -36,9 +36,9 @@ class RequestService {
             case 'friend':
                 return await FRIEND_REQUEST.find(query).populate('request').populate('sender');
             case 'project':
-                return await PROJECT_JOIN_REQUEST.find(query).populate('request').populate('project');
+                return await PROJECT_JOIN_REQUEST.find(query).populate('request').populate('project.id');
             case 'task':
-                return await TASK_JOIN_REQUEST.find(query).populate('request').populate('task');
+                return await TASK_JOIN_REQUEST.find(query).populate('request').populate('task.id');
             default:
                 return await REQUEST.find(query);
         }

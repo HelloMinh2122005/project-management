@@ -9,6 +9,10 @@ var requestSchema = new mongoose.Schema({
             ref: 'USER',
             required: true,
             index: true,
+        },
+        name: {
+            type: String,
+            required: true,
         }
     },
     sender: {
@@ -30,7 +34,6 @@ var requestSchema = new mongoose.Schema({
     },
     message: {
         type: String,
-        required: true,
     },
     type: {
         type: String,
@@ -65,11 +68,17 @@ var project_join_requestSchema = new mongoose.Schema({
         index: true,
     },
     project: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'PROJECT',
-        required: true,
-        index: true,
-
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'PROJECT',
+            required: true,
+            index: true
+        },
+        name: {
+            type: String,
+            required: true,
+            index: true
+        }
     }
 }, {
     timestamps: true,
@@ -84,11 +93,17 @@ var task_join_requestSchema = new mongoose.Schema({
         index: true,
     },
     task: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'TASK',
-        required: true,
-        index: true,
-
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'TASK',
+            required: true,
+            index: true
+        },
+        name: {
+            type: String,
+            required: true,
+            index: true
+        }
     }
 }, {
     timestamps: true,

@@ -17,6 +17,11 @@ var notificationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    type: {
+        type: String,
+        enum: ['friend', 'project', 'task'],
+        default: 'friend',
+    },
     attributes: {
         type: mongoose.Schema.Types.Mixed,
     },
@@ -27,12 +32,12 @@ var notificationSchema = new mongoose.Schema({
 
 var friend_notificationSchema = new mongoose.Schema({
     notification: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'NOTIFICATION',
-            required: true,
-            index: true,
-        }
+
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'NOTIFICATION',
+        required: true,
+        index: true,
+
     },
     sender: {
         id: {
@@ -53,12 +58,12 @@ var friend_notificationSchema = new mongoose.Schema({
 
 var project_notificationSchema = new mongoose.Schema({
     notification: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'NOTIFICATION',
-            required: true,
-            index: true,
-        }
+
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'NOTIFICATION',
+        required: true,
+        index: true,
+
     },
     project: {
         id: {

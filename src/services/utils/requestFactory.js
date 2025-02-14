@@ -53,9 +53,9 @@ class RequestFactory {
             case 'friend':
                 return await FRIEND_REQUEST.findById(requestId).populate('request').populate('sender');
             case 'project':
-                return await PROJECT_JOIN_REQUEST.findById(requestId).populate('request').populate('project');
+                return await PROJECT_JOIN_REQUEST.findById(requestId).populate('request').populate('project.id');
             case 'task':
-                return await TASK_JOIN_REQUEST.findById(requestId).populate('request').populate('task');
+                return await TASK_JOIN_REQUEST.findById(requestId).populate('request').populate('task.id');
         }
     }
 }
