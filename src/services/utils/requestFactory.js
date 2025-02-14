@@ -47,6 +47,17 @@ class RequestFactory {
         }
         return newRequest;
     }
+
+    static async getRequestAndPopulate(type, requestId) {
+        switch (type) {
+            case 'friend':
+                return await FRIEND_REQUEST.findById(requestId).populate('request').populate('sender');
+            case 'project':
+                return await PROJECT_JOIN_REQUEST.findById(requestId).populate('request').populate('project');
+            case 'task':
+                return await TASK_JOIN_REQUEST.findById(requestId).populate('request').populate('task');
+        }
+    }
 }
 
 export default RequestFactory;

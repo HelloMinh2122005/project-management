@@ -9,6 +9,10 @@ class RequestService {
         return await RequestFactory.createRequest(type, payload);
     }
 
+    async getRequestAndPopulate(type, requestId) {
+        return await RequestFactory.getRequestAndPopulate(type, requestId);
+    }
+
     async getAllRequests() {
         return await REQUEST.find();
     }
@@ -18,7 +22,26 @@ class RequestService {
     }
 
     async deleteRequest(requestId) {
-        return await REQUEST.findByIdAndDelete(requestId);
+        return await Promise.all([
+            REQUEST.findByIdAndDelete(requestId),
+            FRIEND_REQUEST.findByIdAndDelete(requestId),
+            PROJECT_JOIN_REQUEST.findByIdAndDelete(requestId),
+            TASK_JOIN_REQUEST.findByIdAndDelete(requestId)
+        ])
+    }
+
+    async getRequestForUser(type = "", userID, getForSender = true) {
+        const query = getForSender ? { sender: userID } : { receiver: userID };
+        switch (type) {
+            case 'friend':
+                return await FRIEND_REQUEST.find(query).populate('request').populate('sender');
+            case 'project':
+                return await PROJECT_JOIN_REQUEST.find(query).populate('request').populate('project');
+            case 'task':
+                return await TASK_JOIN_REQUEST.find(query).populate('request').populate('task');
+            default:
+                return await REQUEST.find(query);
+        }
     }
 }
 

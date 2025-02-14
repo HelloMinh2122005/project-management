@@ -47,12 +47,10 @@ var requestSchema = new mongoose.Schema({
 
 var friend_requestSchema = new mongoose.Schema({
     request: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'REQUEST',
-            required: true,
-            index: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'REQUEST',
+        required: true,
+        index: true,
     }
 }, {
     timestamps: true,
@@ -61,20 +59,17 @@ var friend_requestSchema = new mongoose.Schema({
 
 var project_join_requestSchema = new mongoose.Schema({
     request: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'REQUEST',
-            required: true,
-            index: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'REQUEST',
+        required: true,
+        index: true,
     },
     project: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'PROJECT',
-            required: true,
-            index: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PROJECT',
+        required: true,
+        index: true,
+
     }
 }, {
     timestamps: true,
@@ -83,20 +78,17 @@ var project_join_requestSchema = new mongoose.Schema({
 
 var task_join_requestSchema = new mongoose.Schema({
     request: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'REQUEST',
-            required: true,
-            index: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'REQUEST',
+        required: true,
+        index: true,
     },
     task: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'TASK',
-            required: true,
-            index: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'TASK',
+        required: true,
+        index: true,
+
     }
 }, {
     timestamps: true,
