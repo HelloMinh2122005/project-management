@@ -16,10 +16,10 @@ router.use('/forgot-password', forgotPasswordRouter);
 router.use('/auth', accessRouter);
 
 // Authenticated routes
-router.use('/notification', notificationRouter);
-router.use('/request', requestRouter);
-router.use('/task', taskRouter);
-router.use('/project', projectRouter);
 router.use('/user', userRouter);
+router.use('/project', projectRouter);
+router.use('/task', taskRouter);
+router.use('/request', requestRouter);
+router.use('/notification', notificationRouter);
 
 export default router;

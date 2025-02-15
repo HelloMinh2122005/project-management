@@ -13,6 +13,7 @@ class RequestService {
         return await RequestFactory.getRequestAndPopulate(type, requestId);
     }
 
+
     async getAllRequests() {
         return await REQUEST.find();
     }
@@ -36,9 +37,9 @@ class RequestService {
             case 'friend':
                 return await FRIEND_REQUEST.find(query).populate('request').populate('sender');
             case 'project':
-                return await PROJECT_JOIN_REQUEST.find(query).populate('request').populate('project.id');
+                return await PROJECT_JOIN_REQUEST.find(query).populate('request').populate('project');
             case 'task':
-                return await TASK_JOIN_REQUEST.find(query).populate('request').populate('task.id');
+                return await TASK_JOIN_REQUEST.find(query).populate('request').populate('task');
             default:
                 return await REQUEST.find(query);
         }

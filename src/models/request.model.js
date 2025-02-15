@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 var requestSchema = new mongoose.Schema({
-    recipients: {
+    recipient: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'USER',
@@ -68,17 +68,10 @@ var project_join_requestSchema = new mongoose.Schema({
         index: true,
     },
     project: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'PROJECT',
-            required: true,
-            index: true
-        },
-        name: {
-            type: String,
-            required: true,
-            index: true
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PROJECT',
+        required: true,
+        index: true
     }
 }, {
     timestamps: true,
@@ -93,17 +86,10 @@ var task_join_requestSchema = new mongoose.Schema({
         index: true,
     },
     task: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'TASK',
-            required: true,
-            index: true
-        },
-        name: {
-            type: String,
-            required: true,
-            index: true
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'TASK',
+        required: true,
+        index: true
     }
 }, {
     timestamps: true,

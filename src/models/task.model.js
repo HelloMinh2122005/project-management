@@ -15,12 +15,10 @@ var taskSchema = new mongoose.Schema({
         index: true,
     },
     project: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'PROJECT',
-            required: true,
-            index: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PROJECT',
+        required: true,
+        index: true,
     },
     file: {
         type: String,
