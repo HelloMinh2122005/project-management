@@ -2,12 +2,16 @@
 
 import notification from './../../models/notification.model.js';
 const { Notification, RequestNotification, ProjectNotification, TaskNotification } = notification;
-import RequestService from '../request.service.js';
-import ProjectService from '../project.service.js';
-import TaskService from '../task.service.js';
 
 class NotificationFactory {
-    static async createBaseNotification(payload, title, message) {
+
+    constructor({ RequestService, ProjectService, TaskService }) {
+        this.RequestService = RequestService;
+        this.ProjectService = ProjectService;
+        this.TaskService = TaskService;
+    }
+
+    async createBaseNotification(payload, title, message) {
         const newNotification = await Notification.create({
             ...payload,
             title,
@@ -19,7 +23,7 @@ class NotificationFactory {
         return newNotification;
     }
 
-    static async createNotification(type, type_model, payload) {
+    async createNotification(type, type_model, payload) {
         if (type !== 'request') {
             throw new Error('Unsupported notification type');
         }
@@ -178,7 +182,7 @@ class NotificationFactory {
         }
     }
 
-    static async getNotificationAndPopulate(type_model, notificationId) {
+    async getNotificationAndPopulate(type_model, notificationId) {
         switch (type_model) {
             case 'request':
                 return await RequestNotification.findById(notificationId).populate('notification').populate('request');

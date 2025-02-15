@@ -1,5 +1,5 @@
 import notification from '../models/notification.model.js';
-import NotificationFactory from './utils/notificationFactory.js';
+import NotificationFactory from './utils/DI_config/notificationFactoryInstance.js';
 
 class NotificationService {
     async createNotification(type, type_model, payload) {
