@@ -25,7 +25,7 @@ class UserController {
 
     async getUserById(req, res) {
         try {
-            const user = await this.UserService.getUserById(req.body.id);
+            const user = await this.UserService.getUserById(req.params.id);
             if (!user) {
                 return res.status(404).send('User not found');
             }
@@ -37,7 +37,7 @@ class UserController {
 
     async updateUser(req, res) {
         try {
-            const user = await this.UserService.updateUser(req.body.id, req.body);
+            const user = await this.UserService.updateUser(req.params.id, req.body);
             if (!user) {
                 return res.status(404).send('User not found');
             }
@@ -49,7 +49,7 @@ class UserController {
 
     async deleteUser(req, res) {
         try {
-            const user = await this.UserService.deleteUser(req.body.id);
+            const user = await this.UserService.deleteUser(req.params.id);
             if (!user) {
                 return res.status(404).send('User not found');
             }

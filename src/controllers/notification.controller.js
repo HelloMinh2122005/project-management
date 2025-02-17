@@ -26,7 +26,7 @@ class NotificationController {
 
     async getNotificationById(req, res) {
         try {
-            const notification = await this.NotificationService.getNotificationById(req.body.id);
+            const notification = await this.NotificationService.getNotificationById(req.params.id);
             if (!notification) {
                 return res.status(404).send('Notification not found');
             }
@@ -38,7 +38,7 @@ class NotificationController {
 
     async deleteNotification(req, res) {
         try {
-            const notification = await this.NotificationService.deleteNotification(req.body.id);
+            const notification = await this.NotificationService.deleteNotification(req.params.id);
             if (!notification) {
                 return res.status(404).send('Notification not found');
             }
