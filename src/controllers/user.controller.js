@@ -53,7 +53,7 @@ class UserController {
             if (!user) {
                 return res.status(404).send('User not found');
             }
-            res.status(204).send();
+            res.status(204).send('User deleted successfully');
         } catch (error) {
             res.status(400).send(error.message);
         }
