@@ -7,7 +7,7 @@ import ForgotPasswordController from '../../controllers/other/forgotPassword.con
 const forgotPasswordService = new ForgotPasswordService();
 const forgotPasswordController = new ForgotPasswordController(forgotPasswordService);
 
-router.post('/', forgotPasswordController.sendEmail.bind(forgotPasswordController));
-router.post('/verify', forgotPasswordController.verifyCode.bind(forgotPasswordController));
+router.post('/', forgotPasswordController.sendEmail.bind(forgotPasswordController)); // checking
+router.post('/verify', forgotPasswordController.verifyCode.bind(forgotPasswordController)); // checking
 
 export default router;

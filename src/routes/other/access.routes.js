@@ -9,10 +9,10 @@ const accessService = new AccessService();
 const accessController = new AccessController(accessService);
 
 // this no need to be authenticated
-router.post('/login', accessController.login.bind(accessController));
-router.post('/signup', accessController.signup.bind(accessController));
+router.post('/login', accessController.login.bind(accessController)); // checking
+router.post('/signup', accessController.signup.bind(accessController)); // checking
 
 // authenticate all routes below
-router.use(checkTokenKey);
+router.use(checkTokenKey); // checking
 
 export default router;

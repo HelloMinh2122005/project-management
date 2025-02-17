@@ -10,16 +10,16 @@ import accessRouter from './other/access.routes.js';
 import forgotPasswordRouter from './other/forgotPassword.routes.js';
 
 // Non authenticated routes
-router.use('/forgot-password', forgotPasswordRouter);
+router.use('/forgot-password', forgotPasswordRouter); // checking
 
 // Authentication
-router.use('/auth', accessRouter);
+router.use('/auth', accessRouter); // checking
 
 // Authenticated routes
-router.use('/user', userRouter);
-router.use('/project', projectRouter);
-router.use('/task', taskRouter);
-router.use('/request', requestRouter);
-router.use('/notification', notificationRouter);
+router.use('/user', userRouter); // checking
+router.use('/project', projectRouter); // checking
+router.use('/task', taskRouter); // checking
+router.use('/request', requestRouter); // checking
+router.use('/notification', notificationRouter); // checking
 
 export default router;
