@@ -23,7 +23,7 @@ var projectSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ['in progress', 'done'],
-        default: 'active',
+        default: 'in progress',
     },
     deadline: {
         type: Date,
@@ -33,16 +33,8 @@ var projectSchema = new mongoose.Schema({
         type: Date
     },
     participants: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'USER'
-        }
-    }],
-    notifications: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'NOTIFICATION'
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'USER'
     }]
 }, {
     timestamps: true,

@@ -19,23 +19,17 @@ var userSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    project: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'PROJECT'
-        }
+    projects: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PROJECT'
     }],
-    task: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'TASK'
-        }
+    tasks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'TASK'
     }],
     friends: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'USER'
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'USER'
     }],
     phone: {
         type: String,

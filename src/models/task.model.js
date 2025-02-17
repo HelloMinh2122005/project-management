@@ -29,10 +29,8 @@ var taskSchema = new mongoose.Schema({
         default: 'to do',
     },
     participants: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'USER'
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'USER'
     }],
     member_comment: {
         type: String
