@@ -16,14 +16,9 @@ var projectSchema = new mongoose.Schema({
         type: String
     },
     owner: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'USER'
-        },
-        name: {
-            type: String
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'USER'
     },
     status: {
         type: String,
@@ -37,20 +32,24 @@ var projectSchema = new mongoose.Schema({
     daydone: {
         type: Date
     },
-    num_participants: {
-        type: Number,
-        default: 0
-    },
+    participants: [{
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'USER'
+        }
+    }],
     tasks: [{
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'TASK'
         }
     }],
-    num_notifications: {
-        type: Number,
-        default: 0
-    }
+    notifications: [{
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'NOTIFICATION'
+        }
+    }]
 }, {
     timestamps: true,
     collection: 'PROJECTS'
