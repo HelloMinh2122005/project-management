@@ -38,12 +38,6 @@ var projectSchema = new mongoose.Schema({
             ref: 'USER'
         }
     }],
-    tasks: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'TASK'
-        }
-    }],
     notifications: [{
         id: {
             type: mongoose.Schema.Types.ObjectId,

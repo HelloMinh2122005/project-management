@@ -32,10 +32,7 @@ var taskSchema = new mongoose.Schema({
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'USER'
-        },
-        name: {
-            type: String
-        },
+        }
     }],
     member_comment: {
         type: String
