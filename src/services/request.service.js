@@ -32,7 +32,7 @@ class RequestService {
     }
 
     async getRequestForUser(type = "", userID, getForSender = true) {
-        const query = getForSender ? { sender: userID } : { receiver: userID };
+        const query = getForSender ? { sender: userID } : { recipient: userID };
         switch (type) {
             case 'friend':
                 return await FRIEND_REQUEST.find(query).populate('request').populate('sender');

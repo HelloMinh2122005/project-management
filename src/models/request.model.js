@@ -4,28 +4,16 @@ import mongoose from 'mongoose';
 
 var requestSchema = new mongoose.Schema({
     recipient: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'USER',
-            required: true,
-            index: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'USER',
+        required: true,
+        index: true,
     },
     sender: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'USER',
-            required: true,
-            index: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'USER',
+        required: true,
+        index: true,
     },
     status: {
         type: String,
