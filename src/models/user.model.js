@@ -6,8 +6,7 @@ var userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
-        index: true,
+        index: true
     },
     avatar: {
         type: String,
@@ -46,12 +45,12 @@ var userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     username: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     password: {
         type: String,
