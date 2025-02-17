@@ -8,9 +8,9 @@ const userService = new UserService();
 const userController = new UserController(userService);
 
 router.post('/', userController.createUser.bind(userController));
-router.get('/', userController.getAllUsers.bind(userController)); // checking
-router.get('/:id', userController.getUserById.bind(userController)); // checking
-router.patch('/:id', userController.updateUser.bind(userController)); // checking
-router.delete('/:id', userController.deleteUser.bind(userController)); // checking
+router.get('/', userController.getAllUsers.bind(userController));
+router.get('/:id', userController.getUserById.bind(userController));
+router.patch('/:id', userController.updateUser.bind(userController));
+router.delete('/:id', userController.deleteUser.bind(userController));
 
 export default router;
