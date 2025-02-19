@@ -5,47 +5,26 @@ const { REQUEST, FRIEND_REQUEST, PROJECT_JOIN_REQUEST, TASK_JOIN_REQUEST } = req
 
 class RequestFactory {
     static async createRequest(type, payload) {
-        const mapping = {
-            friend: {
-                model: FRIEND_REQUEST,
-                getSubAttributes: (payload) => payload.attributes
-            },
-            project: {
-                model: PROJECT_JOIN_REQUEST,
-                getSubAttributes: (payload) => payload.attributes
-            },
-            task: {
-                model: TASK_JOIN_REQUEST,
-                getSubAttributes: (payload) => payload.attributes
-            }
-        };
-
-        const config = mapping[type];
-        if (!config) {
-            throw new Error('Invalid request type');
+        const newRequest = await REQUEST.create(payload);
+        if (!newRequest)
+            throw new Error('Cannot create base request');
+        switch (type) {
+            case 'friend':
+                const friendRequest = await FRIEND_REQUEST.create({ request: newRequest._id });
+                if (!friendRequest)
+                    throw new Error('Cannot create friend request');
+                return (await friendRequest.populate('request'));
+            case 'project':
+                const projectRequest = await PROJECT_JOIN_REQUEST.create({ request: newRequest._id, project: payload.attributes.project });
+                if (!projectRequest)
+                    throw new Error('Cannot create project request');
+                return (await projectRequest.populate('request'));
+            case 'task':
+                const taskRequest = await TASK_JOIN_REQUEST.create({ request: newRequest._id, task: payload.attributes.task });
+                if (!taskRequest)
+                    throw new Error('Cannot create task request');
+                return (await taskRequest.populate('request'));
         }
-
-        const subAttributes = config.getSubAttributes(payload);
-        const subEntry = await config.model.create(subAttributes);
-        if (!subEntry) {
-            throw new Error(`Error creating ${type} request sub-entry`);
-        }
-
-        const newAttributes = {
-            ...payload.attributes,
-            subEntryId: subEntry._id
-        };
-
-        const mainRequestPayload = {
-            ...payload,
-            attributes: newAttributes,
-        };
-
-        const newRequest = await REQUEST.create(mainRequestPayload);
-        if (!newRequest) {
-            throw new Error('Error creating main request');
-        }
-        return newRequest;
     }
 
     static async getRequestAndPopulate(type, requestId) {

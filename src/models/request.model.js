@@ -29,7 +29,7 @@ var requestSchema = new mongoose.Schema({
         required: true,
     },
     attributes: {
-        type: mongoose.Schema.Types.Mixed,
+        type: mongoose.Schema.Types.Mixed
     }
 }, {
     timestamps: true,
@@ -40,8 +40,7 @@ var friend_requestSchema = new mongoose.Schema({
     request: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'REQUEST',
-        required: true,
-        index: true,
+        index: true
     }
 }, {
     timestamps: true,
@@ -52,13 +51,11 @@ var project_join_requestSchema = new mongoose.Schema({
     request: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'REQUEST',
-        required: true,
-        index: true,
+        index: true
     },
     project: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PROJECT',
-        required: true,
         index: true
     }
 }, {
@@ -70,13 +67,11 @@ var task_join_requestSchema = new mongoose.Schema({
     request: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'REQUEST',
-        required: true,
-        index: true,
+        index: true
     },
     task: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'TASK',
-        required: true,
         index: true
     }
 }, {
